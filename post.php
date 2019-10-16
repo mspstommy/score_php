@@ -26,5 +26,9 @@
 			<input type="text" name="FtA"><br>
 		</form>
 		<button type="submit" form="post" value="Submit">提交</button>
+		<form action="request.php" method="post" id=post>
+			<input type="hidden" name="Clear" value="1">
+		</form>
+		<button type="submit" form="post" value="Submit">清空資料表</button>
 	</body>
 </html>

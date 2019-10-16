@@ -58,7 +58,9 @@
 	}else{
 		$sql = "INSERT INTO score (Team,JN,2PtM,2PtA,3PtM,3PtA,FtM,FtA) VALUES ('$Team','$JN','$player_2ptm','$player_2pta','$player_3ptm','$player_3pta','$player_ftm','$player_fta')";
 	}
-
+	if($_POST['Clear'] = 1){
+		$sql = "TRUNCATE TABLE score";
+	}
 	$mysqli->query($sql) or die ($mysqli->connect_error);
 	$player_JN = $mysqli->insert_id;
 	return $player_JN;
