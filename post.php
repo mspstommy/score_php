@@ -24,11 +24,12 @@
 			<input type="text" name="FtM"><br>
 			罰球未中:<br>
 			<input type="text" name="FtA"><br>
+			<input type="hidden" name="Clear" value="false">
 		</form>
 		<button type="submit" form="post" value="Submit">提交</button>
-		<form action="request.php" method="post" id=post>
-			<input type="hidden" name="Clear" value="1">
+		<form action="request.php" method="post" id=clear>
+			<input type="hidden" name="Clear" value="true">
 		</form>
-		<button type="submit" form="post" value="Submit">清空資料表</button>
+		<button type="submit" form="clear" value="Submit">清空資料表</button>
 	</body>
 </html>

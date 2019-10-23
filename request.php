@@ -49,20 +49,26 @@
 	$player_3pta = $_POST['3PtA'];
 	$player_ftm = $_POST['FtM'];
 	$player_fta = $_POST['FtA'];
+	$clear = $_POST['Clear'];
+
 
 	$sql = "SELECT * FROM score WHERE Team = '$Team' AND JN = '$JN'";
 	$result = mysqli_query($mysqli, $sql);
 	$num = mysqli_num_rows($result);
-	if ($num != 0) {
-		$sql = "UPDATE score set 2PtM = '$player_2ptm',2PtA = '$player_2pta',3PtM = '$player_3ptm',3PtA = '$player_3pta',FtM = '$player_ftm',FtA = '$player_fta' WHERE Team='$Team' AND JN = '$JN'";
-	}else{
+	echo "$clear";
+
+	if ($num != 1) {
 		$sql = "INSERT INTO score (Team,JN,2PtM,2PtA,3PtM,3PtA,FtM,FtA) VALUES ('$Team','$JN','$player_2ptm','$player_2pta','$player_3ptm','$player_3pta','$player_ftm','$player_fta')";
+	}else{
+		$sql = "UPDATE score set 2PtM = '$player_2ptm',2PtA = '$player_2pta',3PtM = '$player_3ptm',3PtA = '$player_3pta',FtM = '$player_ftm',FtA = '$player_fta' WHERE Team='$Team' AND JN = '$JN'";
 	}
-	if($_POST['Clear'] = 1){
+
+	if($clear == "true"){
 		$sql = "TRUNCATE TABLE score";
 	}
+
 	$mysqli->query($sql) or die ($mysqli->connect_error);
-	$player_JN = $mysqli->insert_id;
-	return $player_JN;
+	$result->free();
+	$mysqli->close();
 
 ?>
