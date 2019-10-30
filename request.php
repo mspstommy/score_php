@@ -21,7 +21,7 @@
 		echo "三分未中:0<br>";
 	}
 	else{
-		echo "三分中:{$_POST['3PtA']}<br>";
+		echo "三分未中:{$_POST['3PtA']}<br>";
 	}
 	if (empty($_POST['FtM'])){
 		echo "罰球中:0<br>";
@@ -43,12 +43,12 @@
 	
 	$Team = $_POST['Team'];
 	$JN = $_POST['JN'];
-	$player_2ptm = $_POST['2PtM'];
-	$player_2pta = $_POST['2PtA'];
-	$player_3ptm = $_POST['3PtM'];
-	$player_3pta = $_POST['3PtA'];
-	$player_ftm = $_POST['FtM'];
-	$player_fta = $_POST['FtA'];
+	$event_2ptm = $_POST['2PtM'];
+	$event_2pta = $_POST['2PtA'];
+	$event_3ptm = $_POST['3PtM'];
+	$event_3pta = $_POST['3PtA'];
+	$event_ftm = $_POST['FtM'];
+	$event_fta = $_POST['FtA'];
 	$clear = $_POST['Clear'];
 
 
@@ -58,9 +58,29 @@
 	echo "$clear";
 
 	if ($num != 1) {
-		$sql = "INSERT INTO score (Team,JN,2PtM,2PtA,3PtM,3PtA,FtM,FtA) VALUES ('$Team','$JN','$player_2ptm','$player_2pta','$player_3ptm','$player_3pta','$player_ftm','$player_fta')";
+		$action = "insert";
 	}else{
-		$sql = "UPDATE score set 2PtM = '$player_2ptm',2PtA = '$player_2pta',3PtM = '$player_3ptm',3PtA = '$player_3pta',FtM = '$player_ftm',FtA = '$player_fta' WHERE Team='$Team' AND JN = '$JN'";
+		$action = "update";
+	}
+	echo "$action";
+	echo "$Team";
+	echo "$JN";
+	if ($action == "update"){
+		if($event_2ptm == "true"){
+			$sql = "UPDATE score set 2PtM=2PtM+1 WHERE Team='$Team' AND JN = '$JN'";
+		}else if($event_2pta == "true"){
+			$sql = "UPDATE score set 2PtA=2PtA+1 WHERE Team='$Team' AND JN = '$JN'";
+		}else if($event_3ptm == "true"){
+			$sql = "UPDATE score set 3PtM=3PtM+1 WHERE Team='$Team' AND JN = '$JN'";
+		}else if($event_3pta == "true"){
+			$sql = "UPDATE score set 3PtA=3PtA+1 WHERE Team='$Team' AND JN = '$JN'";
+		}else if($event_ftm == "true"){
+			$sql = "UPDATE score set FtM=FtM+1 WHERE Team='$Team' AND JN = '$JN'";
+		}else if($event_fta == "true"){
+			$sql = "UPDATE score set FtA=FtA+1 WHERE Team='$Team' AND JN = '$JN'";
+		}
+	}else if ($action == "insert"){
+		$sql = "INSERT INTO score (Team,JN,2PtM,2PtA,3PtM,3PtA,FtM,FtA) VALUES ('$Team','$JN',0,0,0,0,0,0)";
 	}
 
 	if($clear == "true"){

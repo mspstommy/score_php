@@ -7,29 +7,23 @@
 		</title>
 	</head>
 	<body>
-		<form action="request.php" method="post" id=post>
-			隊伍:<br>
+		<form action="request.php" method="post" id=player>
 			<input type="text" name="Team"><br>
-			球員號碼:<br>
 			<input type="text" name="JN"><br>
-			兩分中:<br>
-			<input type="text" name="2PtM"><br>
-			兩分未中:<br>
-			<input type="text" name="2PtA"><br>
-			三分中:<br>
-			<input type="text" name="3PtM"><br>
-			三分未中:<br>
-			<input type="text" name="3PtA"><br>
-			罰球中:<br>
-			<input type="text" name="FtM"><br>
-			罰球未中:<br>
-			<input type="text" name="FtA"><br>
-			<input type="hidden" name="Clear" value="false">
+			<input type="hidden" name="2PtM" value="0">
+			<input type="hidden" name="2PtA" value="0">
+			<input type="hidden" name="3PtM" value="0">
+			<input type="hidden" name="3PtA" value="0">
+			<input type="hidden" name="FtM" value="0">
+			<input type="hidden" name="FtA" value="0">
+			<input type="hidden" name="Clear" value="0">
+			<button type="submit" name="2PtM" value="true">兩分中</button>
+			<button type="submit" name="2PtA" value="true">兩分未中</button>
+			<button type="submit" name="3PtM" value="true">三分中</button>
+			<button type="submit" name="3PtA" value="true">三分未中</button>
+			<button type="submit" name="FtM" value="true">罰球中</button>
+			<button type="submit" name="FtA" value="true">罰球未中</button>
+			<button type="submit" name="Clear" value="true">清空資料表</button>
 		</form>
-		<button type="submit" form="post" value="Submit">提交</button>
-		<form action="request.php" method="post" id=clear>
-			<input type="hidden" name="Clear" value="true">
-		</form>
-		<button type="submit" form="clear" value="Submit">清空資料表</button>
 	</body>
 </html>
