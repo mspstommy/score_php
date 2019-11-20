@@ -40,7 +40,7 @@
 		echo"</tr>";
 	}
 	echo"</table><br>";
-	$LAPt=($LA2PtM*2+$LA3PtM*3+$LAFtM)/8;
+	$LAPt=($LA2PtM*2+$LA3PtM*3+$LAFtM)/15;
 	echo "總分:$LAPt";
 		
 
